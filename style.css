@@ -5,6 +5,14 @@ body {
     align-items: center;
 }
 
+.spacer {
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    margin-bottom: 40px;
+    font-size: 30px;
+}
 
 .grid-container {
     display: grid;    
@@ -22,7 +30,13 @@ body {
     justify-content: center;
     align-items: center;
     flex: 1 1 auto;
-    font-size: 7rem;
+    font-size: 5rem;
     font-weight: 100;
     cursor: pointer;
+}
+
+.text {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }

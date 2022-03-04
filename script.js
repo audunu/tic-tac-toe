@@ -40,12 +40,13 @@ const game = (() => {
                         gameBoard.board[index] = player1.marker;
                         player1.isActivePlayer = false;
                         player2.isActivePlayer = true;
+                        document.querySelector('.text').textContent = 'Player 2 to play';
                     }
                     else if (player2.isActivePlayer) {
                         gameBoard.board[index] = player2.marker;
                         player2.isActivePlayer = false;
                         player1.isActivePlayer = true;
-
+                        document.querySelector('.text').textContent = 'Player 1 to play';
                     }
                 }
 
