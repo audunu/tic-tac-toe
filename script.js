@@ -35,16 +35,18 @@ const game = (() => {
             newDiv.setAttribute('data-index', index);
             newDiv.addEventListener('click', (e) => {
                 e.preventDefault();
-                if (player1.isActive) {
-                    gameBoard.board[index] = player1.marker;
-                    player1.isActive = false;
-                    player2.isActive = true;
-                }
-                else if (player2.isActive) {
-                    gameBoard.board[index] = player2.marker;
-                    player2.isActive = false;
-                    player1.isActive = true;
-                    
+                while (gameBoard.board[index] === '') {
+                    if (player1.isActive) {
+                        gameBoard.board[index] = player1.marker;
+                        player1.isActive = false;
+                        player2.isActive = true;
+                    }
+                    else if (player2.isActive) {
+                        gameBoard.board[index] = player2.marker;
+                        player2.isActive = false;
+                        player1.isActive = true;
+
+                    }
                 }
 
                 gridContainer.innerHTML = '';
