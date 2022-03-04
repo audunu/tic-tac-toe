@@ -1,0 +1,26 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.grid-container {
+    display: grid;    
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    height: 70vh;
+    
+}
+
+.square {
+    border: solid 2px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 auto;
+    font-size: 7rem;
+    font-weight: 100;
+    
+}
