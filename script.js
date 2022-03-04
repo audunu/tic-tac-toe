@@ -1,11 +1,11 @@
 // player factory function
-const Player = (name, marker, isActive) => {
+const Player = (name, marker, isActivePlayer) => {
 
 
     return {
         name,
         marker,
-        isActive,
+        isActivePlayer,
     };
 }
 
@@ -36,15 +36,15 @@ const game = (() => {
             newDiv.addEventListener('click', (e) => {
                 e.preventDefault();
                 while (gameBoard.board[index] === '') {
-                    if (player1.isActive) {
+                    if (player1.isActivePlayer) {
                         gameBoard.board[index] = player1.marker;
-                        player1.isActive = false;
-                        player2.isActive = true;
+                        player1.isActivePlayer = false;
+                        player2.isActivePlayer = true;
                     }
-                    else if (player2.isActive) {
+                    else if (player2.isActivePlayer) {
                         gameBoard.board[index] = player2.marker;
-                        player2.isActive = false;
-                        player1.isActive = true;
+                        player2.isActivePlayer = false;
+                        player1.isActivePlayer = true;
 
                     }
                 }
