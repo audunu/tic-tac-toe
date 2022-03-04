@@ -22,5 +22,5 @@ body {
     flex: 1 1 auto;
     font-size: 7rem;
     font-weight: 100;
-    
+    cursor: pointer;
 }
