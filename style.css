@@ -10,7 +10,7 @@ body {
     display: grid;    
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    height: 70vh;
+    height: 50vh;
     width: 70vw;
     margin: auto;
     
