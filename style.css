@@ -88,3 +88,13 @@ label, input, button {
 .green {
     color: green;
 }
+
+.restartBtn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.restartBtn-container button {
+    padding: 7px;
+}
