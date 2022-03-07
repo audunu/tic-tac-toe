@@ -22,6 +22,7 @@ body {
     background-color: aqua;
     color: black;
     border-radius: 10px;
+
 }
 
 
@@ -30,14 +31,13 @@ label, input, button {
     margin: 10px;
 }
 
-button {
+.pop-up button {
     border-radius: 5px;
     padding: 7px;
     background-color: blueviolet;
 }
 
 .button-container {
-    
     display: flex;    
     justify-content: center;
     align-items: end;
