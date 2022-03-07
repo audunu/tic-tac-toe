@@ -13,9 +13,20 @@ const Player = (name, marker, isActivePlayer) => {
 const gameBoard = (() => {
     let board = ['', '', '', '', '', '', '', '', ''];
 
+    const winningCombos = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+      ];
+
     return {
         board,
-
+        winningCombos,
     };
 })();
 
@@ -24,6 +35,26 @@ const game = (() => {
 
     const player1 = Player('player1', 'X', true);
     const player2 = Player('player2', 'O', false);
+
+
+    const determineWinner = () => {
+        let gameOver = false;
+        for (let i = 0; i < gameBoard.winningCombos.length; i++) {
+            let a = gameBoard.board[gameBoard.winningCombos[i][0]];
+            let b = gameBoard.board[gameBoard.winningCombos[i][1]];
+            let c = gameBoard.board[gameBoard.winningCombos[i][2]];
+            if (a === b && b == c) {
+                gameOver = true;
+                a === 'X' ? document.querySelector('.text').textContent = 'Congrats to Player 1!!!' : document.querySelector('.text').textContent = 'Congrats to Player 2!!!';
+                document.querySelector('.text').classList.add('green');
+            }
+         
+        }
+    }
+
+
+
+
 
 
     const render = () => {
@@ -59,6 +90,7 @@ const game = (() => {
     }
     return {
         render,
+        determineWinner,
     }
 
 
