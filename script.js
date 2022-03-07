@@ -52,7 +52,7 @@ const game = (() => {
                 document.querySelector('.text').classList.add('green');
             }
         }
-        if (!gameBoard.board.includes('')) {
+        if (gameOver === false && !gameBoard.board.includes('')) {
             document.querySelector('.text').textContent = 'It´s a tie!';
         }
         
