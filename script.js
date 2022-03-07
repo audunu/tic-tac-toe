@@ -1,24 +1,19 @@
-
-
-const startBtn = document.querySelector('.pop-up button');
-const popUp = document.querySelector('.pop-up');
-startBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    popUp.style.visibility = 'hidden';
-    game.render();
-});
-
 // player factory function
-const Player = (name, marker) => {
+
+
+
+
+const Player = (name, marker, isActivePlayer) => {
 
 
     return {
         name,
         marker,
+        isActivePlayer,
     };
 }
 
-// gameboard module
+// gameboard object
 const gameBoard = (() => {
     let board = ['', '', '', '', '', '', '', '', ''];
 
@@ -39,13 +34,13 @@ const gameBoard = (() => {
     };
 })();
 
-// game module
+
 const game = (() => {
 
-    const player1Input = document.querySelector('#player1').value;
-    const player2Input = document.querySelector('#player2').value;
-    const player1 = Player(player1Input, 'X');
-    const player2 = Player(player2Input, 'O');
+    
+
+    const player1 = Player('player1', 'X', true);
+    const player2 = Player('player2', 'O', false);
     let gameOver = false;
 
     const checkWinner = () => {
@@ -55,12 +50,12 @@ const game = (() => {
             let c = gameBoard.board[gameBoard.winningCombos[i][2]];
             if (a === b && b == c && a !== '') {
                 gameOver = true;
-                a === 'X' ? document.querySelector('.text').textContent = `Congrats to ${player1.name}!!!` : document.querySelector('.text').textContent = `Congrats to ${player2.name}!!!`;
+                a === 'X' ? document.querySelector('.text').textContent = 'Congrats to Player 1!!!' : document.querySelector('.text').textContent = 'Congrats to Player 2!!!';
                 document.querySelector('.text').classList.add('green');
             }
         }
-        if (!gameBoard.board.includes('')) {
-            document.querySelector('.text').textContent = 'It is a tie!';
+        if (gameOver === false && !gameBoard.board.includes('')) {
+            document.querySelector('.text').textContent = 'It´s a tie!';
         }
         
     }
@@ -84,13 +79,13 @@ const game = (() => {
                         gameBoard.board[index] = player1.marker;
                         player1.isActivePlayer = false;
                         player2.isActivePlayer = true;
-                        document.querySelector('.text').textContent = `${player2.name} to play`;
+                        document.querySelector('.text').textContent = 'Player 2 to play';
                     }
                     else if (player2.isActivePlayer) {
                         gameBoard.board[index] = player2.marker;
                         player2.isActivePlayer = false;
                         player1.isActivePlayer = true;
-                        document.querySelector('.text').textContent = `${player1.name} to play`;
+                        document.querySelector('.text').textContent = 'Player 1 to play';
 
                     }
                     checkWinner();
@@ -117,5 +112,6 @@ const game = (() => {
 
 
 
+game.render();
 
 
