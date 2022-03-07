@@ -1,4 +1,8 @@
 // player factory function
+
+
+
+
 const Player = (name, marker, isActivePlayer) => {
 
 
@@ -107,4 +111,5 @@ const game = (() => {
 
 
 game.render();
+
 
