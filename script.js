@@ -35,21 +35,23 @@ const game = (() => {
 
     const player1 = Player('player1', 'X', true);
     const player2 = Player('player2', 'O', false);
+    let gameOver = false;
 
-
-    const determineWinner = () => {
-        let gameOver = false;
+    const checkWinner = () => {
         for (let i = 0; i < gameBoard.winningCombos.length; i++) {
             let a = gameBoard.board[gameBoard.winningCombos[i][0]];
             let b = gameBoard.board[gameBoard.winningCombos[i][1]];
             let c = gameBoard.board[gameBoard.winningCombos[i][2]];
-            if (a === b && b == c) {
+            if (a === b && b == c && a !== '') {
                 gameOver = true;
                 a === 'X' ? document.querySelector('.text').textContent = 'Congrats to Player 1!!!' : document.querySelector('.text').textContent = 'Congrats to Player 2!!!';
                 document.querySelector('.text').classList.add('green');
             }
-         
         }
+        if (!gameBoard.board.includes('')) {
+            document.querySelector('.text').textContent = 'It´s a tie!';
+        }
+        
     }
 
 
@@ -66,7 +68,7 @@ const game = (() => {
             newDiv.setAttribute('data-index', index);
             newDiv.addEventListener('click', (e) => {
                 e.preventDefault();
-                while (gameBoard.board[index] === '') {
+                while (gameBoard.board[index] === '' && gameOver === false) {
                     if (player1.isActivePlayer) {
                         gameBoard.board[index] = player1.marker;
                         player1.isActivePlayer = false;
@@ -78,7 +80,9 @@ const game = (() => {
                         player2.isActivePlayer = false;
                         player1.isActivePlayer = true;
                         document.querySelector('.text').textContent = 'Player 1 to play';
+
                     }
+                    checkWinner();
                 }
 
                 gridContainer.innerHTML = '';
@@ -90,7 +94,6 @@ const game = (() => {
     }
     return {
         render,
-        determineWinner,
     }
 
 
