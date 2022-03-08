@@ -87,7 +87,6 @@ const game = (() => {
         const gridContainer = document.querySelector('.grid-container');
         gridContainer.innerHTML = '';
         gameBoard.board.forEach((element, index) => {
-            console.log('newsquare');
             const newDiv = document.createElement('div');
             newDiv.textContent = element;
             newDiv.classList.add('square');

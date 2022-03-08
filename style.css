@@ -22,7 +22,7 @@ body {
     background-color: aqua;
     color: black;
     border-radius: 10px;
-    visibility: hidden;
+    visibility: visible;
 
 }
 
@@ -97,4 +97,5 @@ label, input, button {
 
 .restartBtn-container button {
     padding: 7px;
+    width: 20%;
 }
