@@ -1,26 +1,22 @@
 // player factory function
 
 
-const player1Input = document.querySelector('#player1').value;
-const player2Input = document.querySelector('#player2').value;
+let player1Input;
+let player2Input;
 
 const startBtn = document.querySelector('.pop-up button');
-
 const popUp = document.querySelector('.pop-up');
 
 startBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    player1Input = document.querySelector('#player1').value;
+    player2Input = document.querySelector('#player2').value;
+    document.querySelector('.text').textContent = `${player1Input} to play`;
     popUp.style.visibility = 'hidden';
     game.render();
 });
 
-const restartBtn = document.querySelector('.restartBtn-container button');
-restartBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    gameBoard.reset();
-    game.render();
 
-})
 
 
 const Player = (name, marker, isActivePlayer) => {
@@ -62,8 +58,8 @@ const gameBoard = (() => {
 
 const game = (() => {
 
-    const player1 = Player('Player 1', 'X', true);
-    const player2 = Player('Player 2', 'O', false);
+    let player1 = Player(player1Input, 'X', true);
+    let player2 = Player(player2Input, 'O', false);
     let gameOver = false;
 
     const checkWinner = () => {
@@ -73,7 +69,8 @@ const game = (() => {
             let c = gameBoard.board[gameBoard.winningCombos[i][2]];
             if (a === b && b == c && a !== '') {
                 gameOver = true;
-                a === 'X' ? document.querySelector('.text').textContent = `Congrats to ${player1.name}!!!` : document.querySelector('.text').textContent = `Congrats to ${player2.name}!!!`;
+                
+                a === 'X' ? document.querySelector('.text').textContent = `Congrats to ${player1Input}!!!` : document.querySelector('.text').textContent = `Congrats to ${player2Input}!!!`;
                 document.querySelector('.text').classList.add('green');
             }
         }
@@ -86,6 +83,7 @@ const game = (() => {
     const render = () => {
         const gridContainer = document.querySelector('.grid-container');
         gridContainer.innerHTML = '';
+    
         gameBoard.board.forEach((element, index) => {
             const newDiv = document.createElement('div');
             newDiv.textContent = element;
@@ -98,14 +96,15 @@ const game = (() => {
                         gameBoard.board[index] = player1.marker;
                         player1.isActivePlayer = false;
                         player2.isActivePlayer = true;
-                        document.querySelector('.text').textContent = `${player2.name} to play`;
-
+                        document.querySelector('.text').textContent = `${player2Input} to play`;
+                        
                     }
                     else if (player2.isActivePlayer) {
                         gameBoard.board[index] = player2.marker;
                         player2.isActivePlayer = false;
                         player1.isActivePlayer = true;
-                        document.querySelector('.text').textContent = `${player1.name} to play`;
+                        document.querySelector('.text').textContent = `${player1Input} to play`;
+                        
 
 
                     }
@@ -113,14 +112,31 @@ const game = (() => {
                 }
 
                 gridContainer.innerHTML = '';
+                
                 render();
             })
             gridContainer.appendChild(newDiv);
         })
-
     }
+
+    const addEvent = () => {
+        const restartBtn = document.querySelector('.restartBtn-container button');
+        restartBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            gameBoard.reset();
+            document.querySelector('.text').textContent = `${player1Input} to play`;
+            render();
+            gameOver = false;
+            player1.isActivePlayer = true;
+            player2.isActivePlayer = false;
+            document.querySelector('.text').classList.remove('green');
+        })
+    }
+
+
     return {
         render,
+        addEvent,
     }
 
 
@@ -129,7 +145,7 @@ const game = (() => {
 
 
 game.render();
-
+game.addEvent();
 
 
 
